@@ -1,3 +1,6 @@
+@extends('layouts.app')
+@section('content')
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -173,7 +176,7 @@
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
+          <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
@@ -389,7 +392,7 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+          @yield('data')
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -608,3 +611,5 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+@endsection

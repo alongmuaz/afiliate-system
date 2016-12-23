@@ -25,3 +25,5 @@ Route::group(['middleware' => ['auth','admin']], function(){
 		Route::get('/alpha', ['as' => 'welcome']);
 	});
 });
+
+Route::get('/admin', ['as' => 'admin.index', 'uses' => 'Admin\AdminController@index']);
