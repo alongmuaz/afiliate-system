@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => ['auth','admin']], function(){
+	Route::group(['prefix' => 'ghost'], function(){
+		Route::get('/', ['as' => 'admin.main.index', 'uses' => 'Admin\AdminController@index']);
+		Route::get('/alpha', ['as' => 'welcome']);
+	});
+});
