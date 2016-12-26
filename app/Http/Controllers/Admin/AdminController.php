@@ -33,7 +33,7 @@ class AdminController extends BaseController
     public function index()
     {
         $items = ProductVariant::latest()->paginate(5);
-        $response = [
+        return [
             'pagination' => [
                 'total' => $items->total(),
                 'per_page'	=> $items->perPage(),
@@ -45,8 +45,6 @@ class AdminController extends BaseController
 
             'data' => $items
         ];
-
-        return response()->json($response);
     }
 
     public function store(Request $request)
@@ -56,8 +54,7 @@ class AdminController extends BaseController
     		'description' => 'required',
     		]);
 
-    	$create = ProductVariant::create($request->all());
-    	return response()->json($create);
+    	return ProductVariant::create($request->all());
     }
 
     public function update(Request $request, $id)
@@ -66,8 +63,7 @@ class AdminController extends BaseController
     		'name' => 'required',
     		'description' => 'required']);
 
-    	$edit = ProductVariant::find($id)->update($request)->all();
-    	return response()->json($edit);
+    	return ProductVariant::find($id)->update($request)->all();
     }
 
     public function destroy($id)
