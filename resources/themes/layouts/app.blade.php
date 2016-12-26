@@ -5,7 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Blank Page</title>
   <!-- Tell the browser to be responsive to screen width -->
+  <meta id="token" name="token" value="{{ csrf_token() }}">
+
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- csrf token -->
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="{{ asset('adminlte/bootstrap/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->
@@ -42,6 +45,8 @@
 <script src="{{asset('adminlte/dist/js/app.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 @if (isset($pluginjs) && (count($pluginjs) > 0))
   @foreach( $pluginjs as $js)
 <script src="{{$js}}"></script>
@@ -52,5 +57,6 @@
 <script src="{{asset($js)}}"></script>
   @endforeach
 @endif
+
 </body>
 </html>

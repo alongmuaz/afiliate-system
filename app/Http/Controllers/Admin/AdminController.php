@@ -24,29 +24,29 @@ class AdminController extends BaseController
 
     public function vueCrud()
 	{
-		$items = ProductVariant::latest()->paginate(5);
-		$response = [
-			'pagination' => [
-				'total' => $items->total(),
-				'per_page'	=> $items->perPage(),
-				'current_page'	=> $items->lastPage(),
-				'last_page'	=> $items->lastPage(),
-				'from'	=>	$items->firstItem(),
-				'to'	=>	$items->lastItem()
-			], 
-
-			'data' => $items 
-			];
-
-			return response()->json($response);
+        $this->data['pluginjs'][] = 'https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js';
+        $this->data['pluginjs'][] = 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.js';
+        $this->data['pagejs'][] = 'js/productvariant.js';
+        return view('admin.index',$this->data);
 	}
 
     public function index()
     {
-        $this->data['pluginjs'][] = 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.js';
-        $this->data['pluginjs'][] = 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js';
-        $this->data['pagejs'][] = 'js/productvariant.js';
-        return view('admin.index',$this->data);
+        $items = ProductVariant::latest()->paginate(5);
+        $response = [
+            'pagination' => [
+                'total' => $items->total(),
+                'per_page'	=> $items->perPage(),
+                'current_page'	=> $items->lastPage(),
+                'last_page'	=> $items->lastPage(),
+                'from'	=>	$items->firstItem(),
+                'to'	=>	$items->lastItem()
+            ],
+
+            'data' => $items
+        ];
+
+        return response()->json($response);
     }
 
     public function store(Request $request)
@@ -66,7 +66,7 @@ class AdminController extends BaseController
     		'name' => 'required',
     		'description' => 'required']);
 
-    	$edit = ProductVariant::findorfail($id)->update($request)->all();
+    	$edit = ProductVariant::find($id)->update($request)->all();
     	return response()->json($edit);
     }
 
@@ -74,6 +74,12 @@ class AdminController extends BaseController
     {
     	ProductVariant::findorfail($id)->delete();
     	return response()->json(['done']);
+    }
+
+    public function show($id)
+    {
+        $product = ProductVariant::findorfail($id);
+        return $product;
     }
 
 

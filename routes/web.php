@@ -26,6 +26,12 @@ Route::group(['middleware' => ['auth','admin']], function(){
 	});
 });
 
-// Route::get('/admin', ['as' => 'admin.index', 'uses' => 'Admin\AdminController@index']);
+Route::get('/admin', ['as' => 'admin.index', 'uses' => 'Admin\AdminController@vueCrud']);
+Route::resource('vueitems','Admin\AdminController');
 
-Route::resource('admin','Admin\AdminController');
+//Route::resource('admin','Admin\AdminController');
+
+// Route::group(['middleware' => ['web']], function() {
+//     Route::get('/vuejscrud', 'Admin\AdminController@vueCrud');
+//     Route::resource('vueitems','Admin\AdminController');
+// });
