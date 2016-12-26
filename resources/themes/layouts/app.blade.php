@@ -47,5 +47,10 @@
 <script src="{{$js}}"></script>
   @endforeach
   @endif
+@if (isset($pagejs) && (count($pagejs) > 0))
+  @foreach( $pagejs as $js)
+<script src="{{asset($js)}}"></script>
+  @endforeach
+@endif
 </body>
 </html>

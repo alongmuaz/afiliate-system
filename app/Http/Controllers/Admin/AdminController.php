@@ -43,7 +43,7 @@ class AdminController extends BaseController
     public function index()
     {
 
-        return view('admin.index',$this->js->vuejs());
+        return view('admin.index',$this->js->vuejs(),$this->js->productVariantJs());
     }
 
     public function store(Request $request)

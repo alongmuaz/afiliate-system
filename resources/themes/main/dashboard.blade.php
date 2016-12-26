@@ -392,7 +392,9 @@
           </div>
         </div>
         <div class="box-body">
-          @yield('data')
+          <div class="container" id="manage-vue">
+            @yield('data')
+          </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
