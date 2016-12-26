@@ -42,5 +42,10 @@
 <script src="{{asset('adminlte/dist/js/app.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
+@if (isset($pluginjs) && (count($pluginjs) > 0))
+  @foreach( $pluginjs as $js)
+<script src="{{$js}}"></script>
+  @endforeach
+  @endif
 </body>
 </html>
