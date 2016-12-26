@@ -15,6 +15,7 @@ class AdminController extends BaseController
 {
 
     protected $js;
+    protected $data;
 
     public function __construct()
     {
@@ -42,8 +43,10 @@ class AdminController extends BaseController
 
     public function index()
     {
-
-        return view('admin.index',$this->js->vuejs(),$this->js->productVariantJs());
+        $this->data['pluginjs'][] = 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.js';
+        $this->data['pluginjs'][] = 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js';
+        $this->data['pagejs'][] = 'js/productvariant.js';
+        return view('admin.index',$this->data);
     }
 
     public function store(Request $request)
