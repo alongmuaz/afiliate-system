@@ -61,7 +61,6 @@
     </nav>
 
     <!-- Create Modal -->
-
 <div class="modal fade" id="create-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,8 +75,7 @@
                         <input type="text" name="title" class="form-control" v-model="newItem.title" />
                         <span v-if="formErrors['title']" class="error text-danger">
                                 @{{ formErrors['title'] }}
-
-                            </span>
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="title">Description :</label>
@@ -85,7 +83,7 @@
                         </textarea>
                         <span v-if="formErrors['description']" class="error text-danger">
                                 @{{ formErrors['description'] }}
-                            </span>
+                        </span>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">
@@ -99,4 +97,39 @@
     </div>
 </div>
 
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem.id)">
+                    <div class="form-group">
+                        <label for="title">Title :</label>
+                        <input type="text" name="title" class="form-control" v-model="fillItem.title" />
+                        <span v-if="formErrorsUpdate['title']" class="error text-danger">
+                                @{{ formErrorsUpdate['title'] }}
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Description :</label>
+                        <textarea name="description" class="form-control" v-model="fillItem.description" >
+                        </textarea>
+                        <span v-if="formErrorsUpdate['description']" class="error text-danger">
+                                @{{ formErrorsUpdate['description'] }}
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     @endsection
